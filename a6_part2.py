@@ -140,18 +140,29 @@ def train_model(X_train, y_train, feature_names):
         trained LinearRegression model
     """
     # TODO: Create a LinearRegression model
-    
+    model = LinearRegression()
     # TODO: Train the model using fit()
-    
+    model.fit(X_train, y_train)
     # TODO: Print the intercept
-    
+    print(f"\n=== Model Training Complete ===")
+    print(f"Intercept: ${model.intercept_:.2f}")
     # TODO: Print each coefficient with its feature name
     #       Hint: use zip(feature_names, model.coef_)
-    
+    print(f"\nCoefficients:")
+    for name, coef in zip(feature_names, model.coef_):
+        print(f"  {name}: {coef:.2f}")
     # TODO: Print the full equation in readable format
-    
+    print(f"\nEquation:")
+    equation = f"Price = "
+    for i, (name, coef) in enumerate(zip(feature_names, model.coef_)):
+        if i == 0:
+            equation += f"{coef:.2f} × {name}"
+        else:
+            equation += f" + ({coef:.2f}) × {name}"
+    equation += f" + {model.intercept_:.2f}"
+    print(equation)
     # TODO: Return the trained model
-    pass
+    return model
 
 
 def evaluate_model(model, X_test, y_test, feature_names):
@@ -168,13 +179,15 @@ def evaluate_model(model, X_test, y_test, feature_names):
         predictions array
     """
     # TODO: Make predictions on X_test
-    
+    predictions = model.predict(X_test)
     # TODO: Calculate R² score
-    
+    r2 = r2_score(y_test, predictions)
     # TODO: Calculate MSE and RMSE
-    
+    mse = mean_squared_error(y_test, predictions)
+    rmse = np.sqrt(mse)
     # TODO: Print R² score with interpretation
-    
+    print(f"\n=== Model Performance ===")
+    print(f"R² ")
     # TODO: Print RMSE with interpretation
     
     # TODO: Calculate and print feature importance
