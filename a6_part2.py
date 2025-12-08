@@ -54,21 +54,29 @@ def visualize_features(data):
     #       - scatter plot, color='blue', alpha=0.6
     #       - labels and title
     #       - grid
-    axes[0, 0].scatter(data['Squarefeet'], data['Price'], color='blue', alpha=0.6)
-    axes[0, 0].set_xlabel('Squarefeet (r2s of feet)')
+    axes[0, 0].scatter(data['SquareFeet'], data['Price'], color='blue', alpha=0.6)
+    axes[0, 0].set_xlabel('SquareFeet (r2 of feet)')
     axes[0, 0].set_ylabel('Price ($)')
-    axes[0, 0].set_title('Mileage vs Price')
+    axes[0, 0].set_title('Squarefeet vs Price')
     axes[0, 0].grid(True, alpha=0.3)
     # TODO: Plot 2 (top right): Bedrooms vs Price
     #       - scatter plot, color='green', alpha=0.6
     #       - labels and title
     #       - grid
-    
+    axes[0, 1].scatter(data['Bedrooms'], data['Price'], color='green', alpha=0.6)
+    axes[0, 1].set_xlabel('Bedrooms (# of bedrooms)')
+    axes[0, 1].set_ylabel('Price ($)')
+    axes[0, 1].set_title('Bedrooms vs Price')
+    axes[0, 1].grid(True, alpha=0.3)
     # TODO: Plot 3 (bottom left): Bathrooms vs Price
     #       - scatter plot, color='red', alpha=0.6
     #       - labels and title
     #       - grid
-    
+    axes[1, 0].scatter(data['Bathrooms'], data['Price'], color='red', alpha=0.6)
+    axes[1, 0].set_xlabel('Bathrooms (# of bathrooms)')
+    axes[1, 0].set_ylabel('Price ($)')
+    axes[1, 0].set_title('Bathrooms vs Price')
+    axes[1, 0].grid(True, alpha=0.3)
     # TODO: Plot 4 (bottom right): Age vs Price
     #       - scatter plot, color='orange', alpha=0.6
     #       - labels and title
@@ -79,11 +87,16 @@ def visualize_features(data):
     axes[0, 1].set_title('Age vs Price')
     axes[0, 1].grid(True, alpha=0.3)
     # TODO: Use plt.tight_layout() to make plots fit nicely
+    axes[1, 1].text(0.5, 0.5, 'Space for additional features', 
+                    ha='center', va='center', fontsize=12)
+    axes[1, 1].axis('off')
     
+    plt.tight_layout()
     # TODO: Save the figure as 'feature_plots.png' with dpi=300
-    
+    plt.savefig('feature_plots.png', dpi=300, bbox_inches='tight')
+    print("\n✓ Feature plots saved as 'feature_plots.png'")
     # TODO: Show the plot
-    pass
+    plt.show()
 
 
 def prepare_features(data):
@@ -278,7 +291,7 @@ if __name__ == "__main__":
     data = load_and_explore_data('house_prices.csv')
     # Step 2: Visualize features
     # TODO: Call visualize_features() with the data
-    
+    visualize_features(data)
     # Step 3: Prepare features
     # TODO: Call prepare_features() and store X and y
     X, y = prepare_features(data)
@@ -287,16 +300,17 @@ if __name__ == "__main__":
     X_train, X_test, y_train, y_test = split_data(X, y)
     # Step 5: Train model
     # TODO: Call train_model() with training data and feature names (X.columns)
-    
+    model = train_model(X_train, y_train, X.columns)
     # Step 6: Evaluate model
     # TODO: Call evaluate_model() with model, test data, and feature names
-    
+    predictions = evaluate_model(model, X_test, y_test, X.columns)
     # Step 7: Compare predictions
     # TODO: Call compare_predictions() showing first 10 examples
-    
+    compare_predictions(y_test, predictions)
     # Step 8: Make a new prediction
     # TODO: Call make_prediction() for a house of your choice
-    
+    make_prediction(model, 1550,3,2,9,290000)
+
     print("\n" + "=" * 70)
     print("✓ Assignment complete! Check your saved plots.")
     print("Don't forget to complete a6_part2_writeup.md!")
