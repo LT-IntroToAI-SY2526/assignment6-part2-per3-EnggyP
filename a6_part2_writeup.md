@@ -7,13 +7,13 @@
 Based on your house price model, rank the four features from most important to least important. Explain how you determined this ranking.
 
 **YOUR ANSWER:**
-1. Most Important: 
-2. 
-3. 
-4. Least Important: 
+1. Most Important: Squarefeet
+2. Bedrooms
+3. Bathrooms
+4. Least Important: Age
 
 **Explanation:**
-
+I determined this ranking since the Squarefeet vs Price shows the strongest upward trend and the points are closer to the line, making it more linear. Bedrooms vs Price has a positive upward trend as well, but it is more clustered and less linear. Bathrooms vs Price has a graph of the price overlapping and the relationship is also clustered together. Age vs Price grapgh is more scattered throughout, there is no linear nor consistency of whether it is increasing or decreasing. 
 
 
 
