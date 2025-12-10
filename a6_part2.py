@@ -81,15 +81,14 @@ def visualize_features(data):
     #       - scatter plot, color='orange', alpha=0.6
     #       - labels and title
     #       - grid
-    axes[0, 1].scatter(data['Age'], data['Price'], color='orange', alpha=0.6)
-    axes[0, 1].set_xlabel('Age (years)')
-    axes[0, 1].set_ylabel('Price ($)')
-    axes[0, 1].set_title('Age vs Price')
-    axes[0, 1].grid(True, alpha=0.3)
+    axes[1, 1].scatter(data['Age'], data['Price'], color='orange', alpha=0.6)
+    axes[1, 1].set_xlabel('Age (years)')
+    axes[1, 1].set_ylabel('Price ($)')
+    axes[1, 1].set_title('Age vs Price')
+    axes[1, 1].grid(True, alpha=0.3)
     # TODO: Use plt.tight_layout() to make plots fit nicely
     axes[1, 1].text(0.5, 0.5, 'Space for additional features', 
                     ha='center', va='center', fontsize=12)
-    axes[1, 1].axis('off')
     
     plt.tight_layout()
     # TODO: Save the figure as 'feature_plots.png' with dpi=300
